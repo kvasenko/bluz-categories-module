@@ -1,5 +1,5 @@
 # Categories for all modules
-CREATE TABLE categories
+CREATE TABLE IF NOT EXISTS categories
 (
   id BIGINT(20) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
   rootId BIGINT(20) unsigned,
@@ -15,6 +15,6 @@ CREATE UNIQUE INDEX UNIQUE_alias ON categories (parentId, alias);
 LOCK TABLES `acl_privileges` WRITE;
 /*!40000 ALTER TABLE `acl_privileges` DISABLE KEYS */;
 
-INSERT INTO `acl_privileges` (`roleId`, `module`, `privilege`)
+REPLACE INTO `acl_privileges` (`roleId`, `module`, `privilege`)
 VALUES
   (2,'categories','Management');
